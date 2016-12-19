@@ -1,0 +1,52 @@
+html,p,img,body,head,nav,aside,main,div{
+	margin:0px;
+	padding:0px;
+}
+
+body{
+	background-image:url("../Images/background.jpg");
+	background-size:cover;
+	font-family:Verdana,Ariel;
+}
+
+
+
+#reg2{
+	left:60%;
+	top:300px;
+	position:absolute;
+}
+
+main{
+	background-color:rgba(0,0,0,.4);	
+	color:#f2f2f2;
+	width:70%;
+	height:800px;
+	left:25%;
+	position:absolute;
+}
+
+div{
+	margin-left:30px;
+	
+}
+
+a{
+	text-decoration:none;
+	color:#f2f2f2;
+}
+
+aside{
+	background-color:#404040;
+	width:20%;
+	height:800px;
+	left:5%;
+	position:absolute;
+	color:#f2f2f2;
+	
+	
+}
+
+h1{
+	margin-left:10px;
+}
