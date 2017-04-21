@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SuperScript || Home Page</title>
+		<!-- CSS Import -->
+		<link rel="stylesheet" type="text/css" href="styles/home.css">
+		<!-- Viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<form action="#" method="POST" id="form">
+			<fieldset>
+				<input type="text" name="username">
+				<input type="email" name="email">
+				<input type="password" name="pass">
+			</fieldset>
+			<fieldset>
+				<input type="radio" name="gender" value="male" checked>
+				<input type="radio" name="gender" value="female">
+			</fieldset>
+			<fieldset>
+				<input type="checkbox" name="rules">
+			</fieldset>
+			<input type="submit" name="regon" value="Регистрирай ме">
+		</form>
+		<script>
+			var form = document.getElementById("form");
+			
+			form.addEventListener("submit", function(event){ Submit();  event.preventDefault(); });
+			
+			function Submit(){
+				var err = 0;
+				
+				for(var i = 0; i < form.length; i++){
+			
+					if(form[i].type == "text" || form[i].type == "email" || form[i].type == "password"){
+						if(form[i].value == ""){
+							err++;
+						}
+					}else if(form[i].type == "checkbox" && form[i].name == "rules"){
+						if(!form[i].checked){
+							err++;
+						}
+					}
+				}
+				
+				if(err > 0){
+					alert("Fill all the fields");
+				}else{
+					alert("Its ready");
+				}
+			}
+			
+		</script>
+	</body>
+</html>
