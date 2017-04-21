@@ -43,19 +43,19 @@
 			$errMsg = "Съгласи се с правилата на играта!";
 		}
 		
-		//Database Check Module
-		$select_query = mysqli_query($conn, "SELECT * FROM `secretscripts` WHERE `email`='$email'");
-		//Select Result
-		$select_result = mysqli_fetch_assoc($select_query);
+		if(!$err){
+			//Database Check Module
+			$select_query = mysqli_query($conn, "SELECT * FROM `secretscripts` WHERE `email`='$email'");
 		
-		if(mysqli_num_rows($select_query) > 0){
-			$err++;
-			$errMsg = "Вече съществува такава Електронна поща!";
-		}else{
-			//Get the date of registration
-			$now = date("Y/m/d");
-			//Insert Query
-			$insert_query = mysqli_query($conn, "INSERT INTO `secretscripts`(`username`, `pass`, `email`, `gender`, `reg_date`) VALUES ('$username', '$pass', '$email', '$gender', '$now')");
+			if(mysqli_num_rows($select_query) > 0){
+				$err++;
+				$errMsg = "Вече съществува такава Електронна поща!";
+			}else{
+				//Get the date of registration
+				$now = date("Y-m-d");
+				//Insert Query
+				$insert_query = mysqli_query($conn, "INSERT INTO `secretscripts`(`username`, `pass`, `email`, `gender`, `reg_date`) VALUES ('$username', '$pass', '$email', '$gender', '$now')");
+			}
 		}
 	}
 ?>
@@ -76,10 +76,10 @@
 					<input type="text" name="username" placeholder="Име на играча" value="<?php if(isset($username)){ echo $username; } ?>">
 				</label>
 				<label class="input-holder">
-					<input type="email" name="email" placeholder="Електронна поща" value="<?php if(isset($pass)){ echo $pass; }?>">
+					<input type="email" name="email" placeholder="Електронна поща" value="<?php if(isset($email)){ echo $email; }?>">
 				</label>
 				<label class="input-holder">
-					<input type="password" name="pass" placeholder="Парола" value="<?php if(isset($email)){ echo $email; } ?>">
+					<input type="password" name="pass" placeholder="Парола" value="<?php if(isset($pass)){ echo $pass; } ?>">
 				</label>
 			</fieldset>
 			<fieldset>
