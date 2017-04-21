@@ -1,3 +1,23 @@
+<?php 
+	if(isset($_POST['regon'])){
+		//Getting Inputs Values
+		/* Username */
+		$username = $_POST['username'];
+		$username = htmlspecialchars($username);
+		$username = strip_tags($username);
+		$username = mysql_real_escape_string($username);
+		/* Password */
+		$pass = $_POST['pass'];
+		$email = $_POST['email'];
+		$gender = $_POST['gender'];
+		
+		if(isset($_POST['rules'])){
+			$rules = $_POST['rules'];
+		}
+		
+		
+	}
+?>
 <!doctype html>
 <html>
 	<head>
@@ -9,11 +29,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<form action="#" method="POST" id="form">
+		<form action="#no-js" method="POST" id="form">
 			<fieldset>
-				<input type="text" name="username">
-				<input type="email" name="email">
-				<input type="password" name="pass">
+				<input type="text" name="username" placeholder="Име на играча" value="<?php if(isset($username)){ echo $username; } ?>">
+				<input type="email" name="email" placeholder="Електронна поща" value="<?php if(isset($pass)){ echo $pass; }?>">
+				<input type="password" name="pass" placeholder="Парола" value="<?php if(isset($email)){ echo $email; } ?>">
 			</fieldset>
 			<fieldset>
 				<input type="radio" name="gender" value="male" checked>
@@ -27,7 +47,9 @@
 		<script>
 			var form = document.getElementById("form");
 			
+			/*
 			form.addEventListener("submit", function(event){ Submit();  event.preventDefault(); });
+			*/
 			
 			function Submit(){
 				var err = 0;
@@ -48,7 +70,7 @@
 				if(err > 0){
 					alert("Fill all the fields");
 				}else{
-					alert("Its ready");
+					form.submit();
 				}
 			}
 			
