@@ -48,14 +48,14 @@
 		//Select Result
 		$select_result = mysqli_fetch_assoc($select_query);
 		
-		if(mysqli_num_rows($select_result) > 0){
+		if(mysqli_num_rows($select_query) > 0){
 			$err++;
 			$errMsg = "Вече съществува такава Електронна поща!";
 		}else{
 			//Get the date of registration
 			$now = date("Y/m/d");
 			//Insert Query
-			$insert_query = mysqli_query("INSERT INTO `secretscripts`(`username`, `pass`, `email`, `gender`, `reg_date`) VALUES ('$username', '$pass', '$email', '$gender', '$now')");
+			$insert_query = mysqli_query($conn, "INSERT INTO `secretscripts`(`username`, `pass`, `email`, `gender`, `reg_date`) VALUES ('$username', '$pass', '$email', '$gender', '$now')");
 		}
 	}
 ?>
