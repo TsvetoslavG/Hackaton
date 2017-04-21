@@ -1,7 +1,17 @@
-<?php 
+<?php
+	session_start();
+	//Db Config Import
+	include("dbconfig.php");
+	//Check if there is active session available
+	if(isset($_SESSION['user'])){
+		header("location: home.php");
+	}
+	
 	if(isset($_POST['regon'])){
+		//Error Msg Holder
+		$errMsg = "";
+		$err = 0;
 		//Getting Inputs Values
-		/* Username */
 		$username = $_POST['username'];
 		$username = htmlspecialchars($username);
 		$username = strip_tags($username);
@@ -18,14 +28,24 @@
 		$email = mysql_real_escape_string($email);
 		/* Gender */
 		$gender = $_POST['gender'];
-		$gender = htmlspecialchars($gender);
-		$gender = strip_tags($gender);
-		$gender = mysql_real_escape_string($gender);
-		if(isset($_POST['rules'])){
-			$rules = $_POST['rules'];
+		
+		if(empty($username) || empty($email) || empty($pass)){
+			//Check if empty values module
+			$err++;
+			$errMsg = "Попълни всички полета";
+		}elseif(!filter_var($email , FILTER_VALIDATE_EMAIL)){
+			//Email Module
+			$err++;
+			$errMsg = "Попълни валидна електронна поща!";
+		}elseif(!isset($_POST['rules'])){
+			//Rules agree module
+			$err++;
+			$errMsg = "Съгласи се с правилата на играта!";
 		}
 		
-		
+		if(!$err){
+			//Msql Import
+		}
 	}
 ?>
 <!doctype html>
@@ -53,6 +73,10 @@
 				<input type="checkbox" name="rules">
 			</fieldset>
 			<input type="submit" name="regon" value="Регистрирай ме">
+			<!-- Error Message Here -->
+			<?php if(isset($errMsg)){ ?>
+				<p><?php echo $errMsg ?></p>
+			<?php } ?>
 		</form>
 		<script>
 			var form = document.getElementById("form");
