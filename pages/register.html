@@ -8,9 +8,19 @@
 		$username = mysql_real_escape_string($username);
 		/* Password */
 		$pass = $_POST['pass'];
+		$pass = htmlspecialchars($pass);
+		$pass = strip_tags($pass);
+		$pass =  mysql_real_escape_string($pass);
+		/* Email */
 		$email = $_POST['email'];
+		$email = htmlspecialchars($email);
+		$email = strip_tags($email);
+		$email = mysql_real_escape_string($email);
+		/* Gender */
 		$gender = $_POST['gender'];
-		
+		$gender = htmlspecialchars($gender);
+		$gender = strip_tags($gender);
+		$gender = mysql_real_escape_string($gender);
 		if(isset($_POST['rules'])){
 			$rules = $_POST['rules'];
 		}
